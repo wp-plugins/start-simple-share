@@ -149,6 +149,18 @@ class MsbdSSSAdmin {
                     
                 <div class="form-row">
                     <div class="grid_4">
+                        <label for="sssp_font_awesome">Use font awesome from this plugin</label>
+                    </div>
+                    
+                    <div class="grid_8">
+                        <?php
+                        echo $this->draw_yes_no_select_box('name="sssp_font_awesome" id="sssp_font_awesome"', $options['sssp_font_awesome']);
+                        ?>
+                    </div>
+                </div>
+                    
+                <div class="form-row">
+                    <div class="grid_4">
                         <label for="sssp_twitter_text">Twitter text</label>
                     </div>
                     

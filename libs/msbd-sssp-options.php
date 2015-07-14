@@ -43,6 +43,7 @@ class MsbdSSSOptions {
             'sssp_share_new_window' => 'yes',
             'sssp_rel_nofollow' => 'yes',
             'sssp_twitter_text' => '',
+            'sssp_font_awesome' => 'yes',
         );
 
 
@@ -66,15 +67,9 @@ class MsbdSSSOptions {
 
 
 
-    public function update_options() {
-        
-        //echo " ***********88 NOT SUBMITTED *************8";// TODO
-            
+    public function update_options() {            
         
         if (isset($_POST['action']) && $_POST['action'] === 'msbd-sssp-update-options') {
-            
-            //echo "SUBMITTED";// TODO
-            //exit;
             
             if (!isset($_POST['sssp_selected_buttons'])) { 
                 $_POST['sssp_selected_buttons'] = NULL; 

@@ -3,7 +3,7 @@
 Plugin Name: Start Simple Share
 Plugin URI: http://z2a.co/
 Description: Start Simple Share plugin helps you to share articles to social network like-facebook, twitter, pinterest, stumbleupon, tumblr, linkedin. 
-Version: 0.0.1
+Version: 0.0.2
 Author: Micro Solutions Bangladesh
 Author URI: http://microsolutionsbd.com/
 Text Domain: msbd-sssp
@@ -14,7 +14,7 @@ define('MSBD_SSSP_URL', trailingslashit(plugins_url(basename(dirname(__FILE__)))
 
 class MsbdStartSimpleShare {
     
-    var $version = '0.0.1';
+    var $version = '0.0.2';
     var $plugin_name = 'Start Simple Share';
 
     /**
@@ -39,8 +39,6 @@ class MsbdStartSimpleShare {
         
         global $wpdb;
         
-        //$this->markup = new MsbdMarkup();
-        
         $this->sssp_options_name = "_msbd_sssp_options";
         
         $this->sssp_options_obj = new MsbdSSSOptions($this);
@@ -56,15 +54,20 @@ class MsbdStartSimpleShare {
 
 
     function init() {
-
         $this->sssp_options_obj->update_options();
         $this->sssp_options = $this->sssp_options_obj->get_option();
-        
     }
     /* end of function : init() */
 
 
-    function load_scripts_styles() {        
+    function load_scripts_styles() {
+        if( $this->sssp_options['sssp_font_awesome']=="yes" ) {
+            
+            wp_register_style('font-awesome', MSBD_SSSP_URL . 'font-awesome/css/font-awesome.min.css', false, '4.2.0', 'all');
+            wp_enqueue_style('font-awesome');            
+            //wp_enqueue_style( "font-awesome", MSBD_SSSP_URL . 'font-awesome/css/font-awesome.min.css', false, false );
+        }
+         
         wp_enqueue_style( "msbd-sssp", MSBD_SSSP_URL . 'css/msbd-sssp.css', false, false );
     }
 
@@ -164,10 +167,6 @@ if ( !function_exists('msbd_current_url') ) {
         return esc_url($urlCurrentPage);
     }
 }
-
-
-
-
 
 
 if (!class_exists('MsbdSSSAdminHelper')) {
